@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pos_flutter_arronium/bill/topBarBill.dart';
 
 class BillScreen extends StatefulWidget {
   const BillScreen({Key? key}) : super(key: key);
@@ -16,10 +17,8 @@ class _BillScreenState extends State<BillScreen> {
     return Scaffold(
       body: Container(
         child: Column(children: [
-          Container(
-            height: widget._topBarHeight,
-            color: Colors.amber,
-          ),
+          // Top Bar
+          TopBarBill(topBarHeight: widget._topBarHeight),
           Expanded(
             child: Container(
               color: Colors.black38,
@@ -35,6 +34,7 @@ class _BillScreenState extends State<BillScreen> {
                               color: Color.fromARGB(255, 53, 155, 67),
                             ),
                           ),
+                          //Bottom Bar
                           Container(
                             height: widget._bottomBarHeight,
                             color: Colors.deepOrangeAccent,
@@ -43,6 +43,7 @@ class _BillScreenState extends State<BillScreen> {
                       ),
                     ),
                   ),
+                  //Side Bar
                   Container(
                     width: widget._sideBarWidth,
                     color: Color.fromARGB(255, 112, 99, 136),
