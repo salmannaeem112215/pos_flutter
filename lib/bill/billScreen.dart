@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class BillScreen extends StatefulWidget {
   const BillScreen({Key? key}) : super(key: key);
+  final double _sideBarWidth = 300;
+  final double _topBarHeight = 50;
+  final double _bottomBarHeight = 150;
 
   @override
   State<BillScreen> createState() => _BillScreenState();
@@ -14,7 +17,7 @@ class _BillScreenState extends State<BillScreen> {
       body: Container(
         child: Column(children: [
           Container(
-            height: 50,
+            height: widget._topBarHeight,
             color: Colors.amber,
           ),
           Expanded(
@@ -22,29 +25,28 @@ class _BillScreenState extends State<BillScreen> {
               color: Colors.black38,
               child: Row(
                 children: [
-                  Flexible(
-                      flex: 3,
-                      child: Container(
-                        color: Colors.deepPurple,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                color: Color.fromARGB(255, 53, 155, 67),
-                              ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.deepPurple,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              color: Color.fromARGB(255, 53, 155, 67),
                             ),
-                            Container(
-                              height: 150,
-                              color: Colors.deepOrangeAccent,
-                            ),
-                          ],
-                        ),
-                      )),
-                  Flexible(
-                      flex: 1,
-                      child: Container(
-                        color: Color.fromARGB(255, 112, 99, 136),
-                      )),
+                          ),
+                          Container(
+                            height: widget._bottomBarHeight,
+                            color: Colors.deepOrangeAccent,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: widget._sideBarWidth,
+                    color: Color.fromARGB(255, 112, 99, 136),
+                  ),
                 ],
               ),
             ),
