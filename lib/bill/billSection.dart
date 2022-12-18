@@ -8,9 +8,12 @@ class BillSection extends StatefulWidget {
     Key? key,
     required this.bottomBarHeight,
     required this.billItem,
+    required this.deleteOrder,
   }) : super(key: key);
   final double bottomBarHeight;
   final List<BillItem> billItem;
+
+  final Function deleteOrder;
 
   @override
   State<BillSection> createState() => _BillSectionState();
@@ -28,6 +31,7 @@ class _BillSectionState extends State<BillSection> {
           BottomBar(
             bottomBarHeight: widget.bottomBarHeight,
             billItem: widget.billItem,
+            deleteOrder: widget.deleteOrder,
           ),
         ],
       ),

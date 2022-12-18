@@ -10,7 +10,7 @@ class BillScreen extends StatefulWidget {
   // BillScreen({Key? key}) : super(key: key);
   final double _sideBarWidth = 200;
   final double _topBarHeight = 50;
-  final double _bottomBarHeight = 100;
+  final double _bottomBarHeight = 110;
 
   final List<Item> _itemList = [
     Item(
@@ -573,6 +573,12 @@ class _BillScreenState extends State<BillScreen> {
     });
   }
 
+  void _deleteOrder() {
+    setState(() {
+      widget._billItem.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -590,6 +596,7 @@ class _BillScreenState extends State<BillScreen> {
                 BillSection(
                   bottomBarHeight: widget._bottomBarHeight,
                   billItem: widget._billItem,
+                  deleteOrder: _deleteOrder,
                 ),
                 SideBar(sideBarWidth: widget._sideBarWidth),
               ],

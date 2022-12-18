@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos_flutter_arronium/bill/bottomBarTotalAmount.dart';
+import 'package:pos_flutter_arronium/bill/button.dart';
 import '../model/billItem.dart';
 
 class BottomBar extends StatelessWidget {
@@ -7,9 +8,11 @@ class BottomBar extends StatelessWidget {
     Key? key,
     required this.bottomBarHeight,
     required this.billItem,
+    required this.deleteOrder,
   }) : super(key: key);
   final double bottomBarHeight;
   final List<BillItem> billItem;
+  final Function deleteOrder;
 
   double getTotalAmount() {
     double totalAmount = 0;
@@ -30,9 +33,23 @@ class BottomBar extends StatelessWidget {
           )),
       height: bottomBarHeight,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Container(
+        Padding(
+          padding: EdgeInsets.all(8),
           child: Row(
-            children: [],
+            children: [
+              Button(
+                title: "New Order",
+                icon: Icon(Icons.add, size: 45),
+                buttonFunction: () {
+                  print('New Order');
+                },
+              ),
+              Button(
+                title: "Del Order",
+                icon: Icon(Icons.delete, size: 45),
+                buttonFunction: deleteOrder,
+              ),
+            ],
           ),
         ),
         BottomBarTotalAmount(totalAmount: getTotalAmount().toString()),
