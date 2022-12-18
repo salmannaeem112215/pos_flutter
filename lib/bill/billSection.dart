@@ -25,7 +25,10 @@ class _BillSectionState extends State<BillSection> {
           BillItemsAdded(
             billItem: widget.billItem,
           ),
-          BottomBar(bottomBarHeight: widget.bottomBarHeight),
+          BottomBar(
+            bottomBarHeight: widget.bottomBarHeight,
+            billItem: widget.billItem,
+          ),
         ],
       ),
     );
