@@ -8,6 +8,7 @@ class BillItemsAdded extends StatelessWidget {
   final List<BillItem> billItem;
   @override
   Widget build(BuildContext context) {
+    int num = 1;
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -24,6 +25,7 @@ class BillItemsAdded extends StatelessWidget {
               BillItemAddedHeading(),
               ...billItem
                   .map((e) => BillItemAddedItem(
+                        num: num++,
                         name: e.name,
                         qty: e.qty,
                         price: e.price,

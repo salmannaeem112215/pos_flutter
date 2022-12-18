@@ -77,7 +77,7 @@ class _TopBarBillState extends State<TopBarBill> {
               itemHeight: 30,
               onSuggestionTap: (x) {
                 print(x.searchKey);
-                widget.addItemInList(x.searchKey);
+                widget.addItemInList(x.searchKey, widget._isByName);
                 _searchController.clear();
               },
               marginColor: Color.fromARGB(255, 243, 237, 237),

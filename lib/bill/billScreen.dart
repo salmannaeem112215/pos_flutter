@@ -553,10 +553,10 @@ class BillScreen extends StatefulWidget {
 }
 
 class _BillScreenState extends State<BillScreen> {
-  void _addItemInBill(String n) {
+  void _addItemInBill(String n, bool isName) {
     int count = 0;
     widget._itemList.forEach((element) {
-      if (element.name == n) {
+      if ((isName ? element.name : element.barcode) == n) {
         setState(() {
           widget._billItem.add(
             BillItem(

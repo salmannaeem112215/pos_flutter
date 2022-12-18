@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class BillItemAddedItem extends StatelessWidget {
   const BillItemAddedItem(
-      {Key? key, required this.name, required this.price, required this.qty})
+      {Key? key,
+      required this.num,
+      required this.name,
+      required this.price,
+      required this.qty})
       : super(key: key);
+  final int num;
   final String name;
   final double qty;
   final double price;
@@ -31,7 +36,7 @@ class BillItemAddedItem extends StatelessWidget {
         children: [
           Expanded(
               child: Text(
-            name,
+            "#" + num.toString() + "  " + name,
             style: headingStyle,
           )),
           Container(
