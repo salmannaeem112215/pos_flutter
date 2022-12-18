@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './model/item.dart';
+import './model/billItem.dart';
 import 'package:pos_flutter_arronium/bill/billScreen.dart';
 
 void main() {
@@ -12,8 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        backgroundColor: Color(0xFF4A4646),
+        primarySwatch: Colors.grey,
+        backgroundColor: Color(0xFF333333),
+        primaryColorDark: Color(0xFF252525),
+        // primaryColor: Colors.white,
       ),
       home: BillScreen(),
     );
