@@ -8,9 +8,9 @@ import '../model/billItem.dart';
 
 class BillScreen extends StatefulWidget {
   // BillScreen({Key? key}) : super(key: key);
-  final double _sideBarWidth = 300;
+  final double _sideBarWidth = 200;
   final double _topBarHeight = 50;
-  final double _bottomBarHeight = 150;
+  final double _bottomBarHeight = 100;
 
   final List<Item> _itemList = [
     Item(
@@ -548,12 +548,31 @@ class BillScreen extends StatefulWidget {
   ];
 
   final List<BillItem> _billItem = [];
-
   @override
   State<BillScreen> createState() => _BillScreenState();
 }
 
 class _BillScreenState extends State<BillScreen> {
+  void _addItemInBill(String n) {
+    int count = 0;
+    widget._itemList.forEach((element) {
+      if (element.name == n) {
+        setState(() {
+          widget._billItem.add(
+            BillItem(
+                barcode: element.barcode,
+                name: element.name,
+                price: element.price,
+                qty: 1,
+                index: count),
+          );
+        });
+        return;
+      }
+      count++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -562,12 +581,16 @@ class _BillScreenState extends State<BillScreen> {
           TopBarBill(
             topBarHeight: widget._topBarHeight,
             itemList: widget._itemList,
+            addItemInList: _addItemInBill,
           ),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                BillSection(bottomBarHeight: widget._bottomBarHeight),
+                BillSection(
+                  bottomBarHeight: widget._bottomBarHeight,
+                  billItem: widget._billItem,
+                ),
                 SideBar(sideBarWidth: widget._sideBarWidth),
               ],
             ),

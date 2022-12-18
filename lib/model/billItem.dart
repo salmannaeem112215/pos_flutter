@@ -15,33 +15,11 @@ class BillItem {
   final double price;
   final int index;
 
-  void editQuanity(double i) {
-    this.qty = i;
+  void updateQty(double q) {
+    qty += q;
   }
 
-  double getTotalPrice() {
-    return this.qty * this.price;
-  }
-
-  @override
-  Widget displayBillItem(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(flex: 5, child: Text(name)),
-          Container(
-            width: 100,
-            child: Center(child: Text(qty.toString())),
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            width: 100,
-            child: Text(price.toString()),
-          ),
-        ],
-      ),
-    );
+  void setQty(double q) {
+    qty = q;
   }
 }

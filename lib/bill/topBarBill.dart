@@ -7,11 +7,13 @@ class TopBarBill extends StatefulWidget {
     Key? key,
     required this.topBarHeight,
     required this.itemList,
+    required this.addItemInList,
   }) : super(key: key);
 
   final double topBarHeight;
   final List<Item> itemList;
   bool _isByName = true;
+  Function addItemInList;
 
   @override
   State<TopBarBill> createState() => _TopBarBillState();
@@ -74,8 +76,8 @@ class _TopBarBillState extends State<TopBarBill> {
               maxSuggestionsInViewPort: 10,
               itemHeight: 30,
               onSuggestionTap: (x) {
-                // addItemInBill(x.searchKey);
                 print(x.searchKey);
+                widget.addItemInList(x.searchKey);
                 _searchController.clear();
               },
               marginColor: Color.fromARGB(255, 243, 237, 237),
