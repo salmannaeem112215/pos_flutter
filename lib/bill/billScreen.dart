@@ -554,15 +554,31 @@ class BillScreen extends StatefulWidget {
 
 class _BillScreenState extends State<BillScreen> {
   int _unSelectSelected() {
-    int count = 0;
-    widget._billItem.forEach((element) {
-      if (element.selected) {
-        element.selected = false;
-        return;
+    int pos = -1;
+    for (var i = 0; i < widget._billItem.length; i++) {
+      if (widget._billItem[i].selected) {
+        widget._billItem[i].selected = false;
+        pos = i;
+        break;
       }
-      count++;
-    });
-    return count;
+    }
+    return pos;
+  }
+
+  void _setItemSelected(int i) {
+    if (i >= 0 && i < widget._billItem.length)
+      widget._billItem[i].selected = true;
+  }
+
+  int _getSelectedItemIndex() {
+    int pos = -1;
+    for (var i = 0; i < widget._billItem.length; i++) {
+      if (widget._billItem[i].selected) {
+        pos = i;
+        break;
+      }
+    }
+    return pos;
   }
 
   void _addItemInBill(String n, bool isName) {
@@ -598,11 +614,13 @@ class _BillScreenState extends State<BillScreen> {
 
   void _deleteItem() {
     setState(() {
-      int prevSelectedItem_index = _unSelectSelected();
-      widget._billItem.removeAt(prevSelectedItem_index);
-      print(prevSelectedItem_index); //
-      if (prevSelectedItem_index < widget._billItem.length)
-        widget._billItem.elementAt(prevSelectedItem_index).selected = true;
+      int index = _getSelectedItemIndex();
+      widget._billItem.removeAt(index);
+      if (index < widget._billItem.length) {
+        widget._billItem[index].selected = true;
+      } else {
+        _setItemSelected(widget._billItem.length - 1);
+      }
     });
   }
 
