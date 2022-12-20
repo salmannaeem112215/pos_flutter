@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
-  const Button({
+class LargeButton extends StatelessWidget {
+  const LargeButton({
     Key? key,
-    required this.icon,
     required this.title,
     required this.buttonFunction,
     this.disable = false,
-    this.height = 75,
-    this.width = 75,
+    this.height = 50,
+    this.width = 150,
   }) : super(key: key);
 
-  final Icon icon;
   final String title;
   final double width;
   final double height;
   final bool disable;
+
   final Function buttonFunction;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
@@ -37,14 +36,7 @@ class Button extends StatelessWidget {
           width: width,
           height: height,
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                icon,
-                Text(title),
-              ],
-            ),
+            child: Text(title),
           ),
         ),
       ),

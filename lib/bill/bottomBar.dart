@@ -43,6 +43,7 @@ class BottomBar extends StatelessWidget {
                 buttonFunction: () {
                   print('New Order');
                 },
+                disable: true,
               ),
               Button(
                 title: "Del Order",

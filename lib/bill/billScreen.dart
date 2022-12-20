@@ -8,7 +8,7 @@ import '../model/billItem.dart';
 
 class BillScreen extends StatefulWidget {
   // BillScreen({Key? key}) : super(key: key);
-  final double _sideBarWidth = 200;
+  final double _sideBarWidth = 265;
   final double _topBarHeight = 50;
   final double _bottomBarHeight = 110;
 
