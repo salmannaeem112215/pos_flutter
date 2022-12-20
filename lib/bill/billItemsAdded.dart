@@ -29,6 +29,7 @@ class BillItemsAdded extends StatelessWidget {
                         name: e.name,
                         qty: e.qty,
                         price: e.price,
+                        selected: e.selected,
                       ))
                   .toList(),
             ],

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class BillItemAddedItem extends StatelessWidget {
-  const BillItemAddedItem(
-      {Key? key,
-      required this.num,
-      required this.name,
-      required this.price,
-      required this.qty})
-      : super(key: key);
+  const BillItemAddedItem({
+    Key? key,
+    required this.num,
+    required this.name,
+    required this.price,
+    required this.qty,
+    required this.selected,
+  }) : super(key: key);
   final int num;
   final String name;
   final double qty;
   final double price;
+  final bool selected;
 
   double getAmount() {
     return qty * price;
@@ -31,6 +33,7 @@ class BillItemAddedItem extends StatelessWidget {
             color: Colors.white30,
           ),
         ),
+        color: (selected) ? Color(0xAD1BA0E2) : Color(0x001BA0E2),
       ),
       child: Row(
         children: [

@@ -14,6 +14,7 @@ class BillItem {
   double qty;
   final double price;
   final int index;
+  bool selected = true;
 
   void updateQty(double q) {
     qty += q;

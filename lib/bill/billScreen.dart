@@ -558,6 +558,9 @@ class _BillScreenState extends State<BillScreen> {
     widget._itemList.forEach((element) {
       if ((isName ? element.name : element.barcode) == n) {
         setState(() {
+          if (widget._billItem.length >= 1) {
+            widget._billItem.last.selected = false;
+          }
           widget._billItem.add(
             BillItem(
                 barcode: element.barcode,
@@ -570,6 +573,13 @@ class _BillScreenState extends State<BillScreen> {
         return;
       }
       count++;
+    });
+  }
+
+  void _deleteItem() {
+    setState(() {
+      widget._billItem.removeWhere((element) => element.selected == true);
+      if (widget._billItem.length >= 1) widget._billItem.last.selected = true;
     });
   }
 
@@ -598,7 +608,10 @@ class _BillScreenState extends State<BillScreen> {
                   billItem: widget._billItem,
                   deleteOrder: _deleteOrder,
                 ),
-                SideBar(sideBarWidth: widget._sideBarWidth),
+                SideBar(
+                  sideBarWidth: widget._sideBarWidth,
+                  deleteItem: _deleteItem,
+                ),
               ],
             ),
           ),
