@@ -68,8 +68,6 @@ class _TopBarBillState extends State<TopBarBill> {
                         ),
                       ))
                   .toList(),
-              searchInputDecoration:
-                  InputDecoration(hintStyle: TextStyle(color: Colors.white)),
               textInputAction: TextInputAction.none,
               controller: _searchController,
               hint: (widget._isByName)
