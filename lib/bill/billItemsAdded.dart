@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:pos_flutter_arronium/bill/billItemAddedHeading.dart';
-import 'package:pos_flutter_arronium/bill/billItemAddedItem%20copy.dart';
+import './billItemAddedHeading.dart';
+import './billItemAddedItem.dart';
 import '../model/billItem.dart';
 
 class BillItemsAdded extends StatelessWidget {
-  const BillItemsAdded({Key? key, required this.billItem}) : super(key: key);
+  const BillItemsAdded(
+      {Key? key, required this.billItem, required this.setSelectedItem})
+      : super(key: key);
   final List<BillItem> billItem;
+  final Function setSelectedItem;
+
   @override
   Widget build(BuildContext context) {
     int num = 1;
@@ -30,6 +34,7 @@ class BillItemsAdded extends StatelessWidget {
                         qty: e.qty,
                         price: e.price,
                         selected: e.selected,
+                        setSelectedItem: setSelectedItem,
                       ))
                   .toList(),
             ],

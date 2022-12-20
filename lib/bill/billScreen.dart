@@ -553,11 +553,24 @@ class BillScreen extends StatefulWidget {
 }
 
 class _BillScreenState extends State<BillScreen> {
+  int _unSelectSelected() {
+    int count = 0;
+    widget._billItem.forEach((element) {
+      if (element.selected) {
+        element.selected = false;
+        return;
+      }
+      count++;
+    });
+    return count;
+  }
+
   void _addItemInBill(String n, bool isName) {
     int count = 0;
     widget._itemList.forEach((element) {
       if ((isName ? element.name : element.barcode) == n) {
         setState(() {
+          _unSelectSelected();
           if (widget._billItem.length >= 1) {
             widget._billItem.last.selected = false;
           }
@@ -576,10 +589,20 @@ class _BillScreenState extends State<BillScreen> {
     });
   }
 
+  void _setSelectedItem(int i) {
+    setState(() {
+      _unSelectSelected();
+      widget._billItem.elementAt(i - 1).selected = true;
+    });
+  }
+
   void _deleteItem() {
     setState(() {
-      widget._billItem.removeWhere((element) => element.selected == true);
-      if (widget._billItem.length >= 1) widget._billItem.last.selected = true;
+      int prevSelectedItem_index = _unSelectSelected();
+      widget._billItem.removeAt(prevSelectedItem_index);
+      print(prevSelectedItem_index); //
+      if (prevSelectedItem_index < widget._billItem.length)
+        widget._billItem.elementAt(prevSelectedItem_index).selected = true;
     });
   }
 
@@ -607,6 +630,7 @@ class _BillScreenState extends State<BillScreen> {
                   bottomBarHeight: widget._bottomBarHeight,
                   billItem: widget._billItem,
                   deleteOrder: _deleteOrder,
+                  setSelectedItem: _setSelectedItem,
                 ),
                 SideBar(
                   sideBarWidth: widget._sideBarWidth,
