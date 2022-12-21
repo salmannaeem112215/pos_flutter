@@ -13,7 +13,7 @@ class PaymentActionRight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width - 150 - 150 - 250;
+    final _screenWidth = MediaQuery.of(context).size.width - 150 - 170 - 250;
     return Expanded(
       child: Container(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),

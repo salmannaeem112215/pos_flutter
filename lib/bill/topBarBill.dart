@@ -49,6 +49,7 @@ class _TopBarBillState extends State<TopBarBill> {
                   .map((e) => SearchFieldListItem(
                         widget._isByName ? e.name : e.barcode,
                         child: Container(
+                          height: 30,
                           color: Theme.of(context).backgroundColor,
                           padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
                           child: Row(

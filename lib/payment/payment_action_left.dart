@@ -13,7 +13,7 @@ class PaymentActionLeft extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: 170,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

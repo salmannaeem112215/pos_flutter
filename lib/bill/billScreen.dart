@@ -556,6 +556,9 @@ class BillScreen extends StatefulWidget {
 
 class _BillScreenState extends State<BillScreen> {
   void _goPaymentScreen() {
+    if (widget._billItem!.length < 1) {
+      return;
+    }
     Navigator.of(context).pushNamed(
       PaymentScreen.nameRoute,
       arguments: {
