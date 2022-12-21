@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
         backgroundColor: Color(0xFF333333),
         primaryColorDark: Color(0xFF252525),
+        errorColor: Color(0xffC9312C),
+        focusColor: Color(0xff1BA1E2),
         // primaryColor: Colors.white,
       ),
       home: PaymentScreen(),
