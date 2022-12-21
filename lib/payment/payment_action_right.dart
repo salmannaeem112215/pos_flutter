@@ -5,9 +5,11 @@ class PaymentActionRight extends StatelessWidget {
     Key? key,
     required this.headingText,
     required this.totalAmount,
+    required this.newBill,
   }) : super(key: key);
   final Widget headingText;
   final double totalAmount;
+  final Function newBill;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class PaymentActionRight extends StatelessWidget {
                   child: TextField(
                     textDirection: TextDirection.rtl,
                     onSubmitted: (s) {
+                      newBill();
                       print(s);
                     },
                     style: TextStyle(

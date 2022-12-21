@@ -25,6 +25,7 @@ class PaymentActionButtons extends StatelessWidget {
             PaymentActionRight(
               headingText: headingText('Payment'),
               totalAmount: totalAmount,
+              newBill: newBill,
             ),
           ],
         ),
