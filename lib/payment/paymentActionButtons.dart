@@ -1,6 +1,8 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:pos_flutter_arronium/bill/button.dart';
+import 'package:pos_flutter_arronium/bill/largeButton.dart';
+import 'package:pos_flutter_arronium/payment/payment_action_left.dart';
+import 'package:pos_flutter_arronium/payment/payment_action_right.dart';
 
 class PaymentActionButtons extends StatelessWidget {
   PaymentActionButtons({Key? key}) : super(key: key);
@@ -15,45 +17,15 @@ class PaymentActionButtons extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              width: 150,
-              child: Column(
-                children: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Theme.of(context).errorColor,
-                    ),
-                    onPressed: null,
-                    child: Container(
-                      height: 50,
-                      child: Row(
-                        children: [
-                          Icon(Icons.cancel),
-                          SizedBox(width: 30),
-                          Text(
-                            'Cancel',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  _headingText('Payment Type'),
-                  Container(
-                    height: 50,
-                    child: Text('hi'),
-                  ),
-                ],
-              ),
-            ),
+            PaymentActionLeft(headingText: headingText('Payment Type')),
+            PaymentActionRight(headingText: headingText('Payment')),
           ],
         ),
       ),
     );
   }
 
-  @override
-  Widget _headingText(String text) {
+  Widget headingText(String text) {
     return Container(
       height: 50,
       padding: EdgeInsets.all(8),
@@ -62,7 +34,7 @@ class PaymentActionButtons extends StatelessWidget {
         text,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 20,
+          fontSize: 22,
           fontWeight: FontWeight.w100,
         ),
       ),

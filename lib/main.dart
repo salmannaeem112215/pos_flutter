@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         // primaryColor: Colors.white,
       ),
       home: PaymentScreen(),
+      // home: BillScreen(),
     );
   }
 }
