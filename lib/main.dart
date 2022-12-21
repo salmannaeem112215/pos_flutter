@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './model/item.dart';
-import './model/billItem.dart';
-import 'package:pos_flutter_arronium/bill/billScreen.dart';
+
+import './payment/payment_screen.dart';
+import './/bill/billScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColorDark: Color(0xFF252525),
         // primaryColor: Colors.white,
       ),
-      home: BillScreen(),
+      home: PaymentScreen(),
     );
   }
 }
