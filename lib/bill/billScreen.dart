@@ -560,8 +560,16 @@ class _BillScreenState extends State<BillScreen> {
       PaymentScreen.nameRoute,
       arguments: {
         'billItem': widget._billItem,
+        'newBill': _newBill,
       },
     );
+  }
+
+  void _newBill() {
+    Navigator.of(context).pop();
+    setState(() {
+      widget._billItem!.clear();
+    });
   }
 
   int _unSelectSelected() {

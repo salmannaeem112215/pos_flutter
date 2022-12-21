@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pos_flutter_arronium/bill/billScreen.dart';
 
 class PaymentActionLeft extends StatelessWidget {
-  const PaymentActionLeft({Key? key, required this.headingText})
-      : super(key: key);
+  const PaymentActionLeft({
+    Key? key,
+    required this.headingText,
+    required this.newBill,
+  }) : super(key: key);
   final Widget headingText;
+  final Function newBill;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,9 @@ class PaymentActionLeft extends StatelessWidget {
               style: TextButton.styleFrom(
                 backgroundColor: Theme.of(context).errorColor,
               ),
-              onPressed: null,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               child: Row(
                 children: [
                   Icon(
@@ -41,7 +48,9 @@ class PaymentActionLeft extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              newBill();
+            },
             child: Container(
                 height: 50,
                 alignment: Alignment.center,

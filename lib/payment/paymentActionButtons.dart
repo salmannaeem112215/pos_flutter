@@ -5,8 +5,11 @@ import 'package:pos_flutter_arronium/payment/payment_action_left.dart';
 import 'package:pos_flutter_arronium/payment/payment_action_right.dart';
 
 class PaymentActionButtons extends StatelessWidget {
-  PaymentActionButtons({Key? key, required this.totalAmount}) : super(key: key);
+  PaymentActionButtons(
+      {Key? key, required this.totalAmount, required this.newBill})
+      : super(key: key);
   final double totalAmount;
+  final Function newBill;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,7 +20,8 @@ class PaymentActionButtons extends StatelessWidget {
         ),
         child: Row(
           children: [
-            PaymentActionLeft(headingText: headingText('Payment Type')),
+            PaymentActionLeft(
+                headingText: headingText('Payment Type'), newBill: newBill),
             PaymentActionRight(
               headingText: headingText('Payment'),
               totalAmount: totalAmount,
