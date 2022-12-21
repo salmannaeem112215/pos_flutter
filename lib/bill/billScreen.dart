@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pos_flutter_arronium/payment/payment_screen.dart';
 import './billSection.dart';
 import './sideBar.dart';
 import './topBarBill.dart';
@@ -547,17 +548,27 @@ class BillScreen extends StatefulWidget {
         lQW: 2),
   ];
 
-  final List<BillItem> _billItem = [];
+  final List<BillItem>? _billItem = [];
+
   @override
   State<BillScreen> createState() => _BillScreenState();
 }
 
 class _BillScreenState extends State<BillScreen> {
+  void _goPaymentScreen() {
+    Navigator.of(context).pushNamed(
+      PaymentScreen.nameRoute,
+      arguments: {
+        'billItem': widget._billItem,
+      },
+    );
+  }
+
   int _unSelectSelected() {
     int pos = -1;
-    for (var i = 0; i < widget._billItem.length; i++) {
-      if (widget._billItem[i].selected) {
-        widget._billItem[i].selected = false;
+    for (var i = 0; i < widget._billItem!.length; i++) {
+      if (widget._billItem![i].selected) {
+        widget._billItem![i].selected = false;
         pos = i;
         break;
       }
@@ -566,14 +577,14 @@ class _BillScreenState extends State<BillScreen> {
   }
 
   void _setItemSelected(int i) {
-    if (i >= 0 && i < widget._billItem.length)
-      widget._billItem[i].selected = true;
+    if (i >= 0 && i < widget._billItem!.length)
+      widget._billItem![i].selected = true;
   }
 
   int _getSelectedItemIndex() {
     int pos = -1;
-    for (var i = 0; i < widget._billItem.length; i++) {
-      if (widget._billItem[i].selected) {
+    for (var i = 0; i < widget._billItem!.length; i++) {
+      if (widget._billItem![i].selected) {
         pos = i;
         break;
       }
@@ -587,10 +598,10 @@ class _BillScreenState extends State<BillScreen> {
       if ((isName ? element.name : element.barcode) == n) {
         setState(() {
           _unSelectSelected();
-          if (widget._billItem.length >= 1) {
-            widget._billItem.last.selected = false;
+          if (widget._billItem!.length >= 1) {
+            widget._billItem!.last.selected = false;
           }
-          widget._billItem.add(
+          widget._billItem!.add(
             BillItem(
                 barcode: element.barcode,
                 name: element.name,
@@ -608,25 +619,25 @@ class _BillScreenState extends State<BillScreen> {
   void _setSelectedItem(int i) {
     setState(() {
       _unSelectSelected();
-      widget._billItem.elementAt(i - 1).selected = true;
+      widget._billItem!.elementAt(i - 1).selected = true;
     });
   }
 
   void _deleteItem() {
     setState(() {
       int index = _getSelectedItemIndex();
-      widget._billItem.removeAt(index);
-      if (index < widget._billItem.length) {
-        widget._billItem[index].selected = true;
+      widget._billItem!.removeAt(index);
+      if (index < widget._billItem!.length) {
+        widget._billItem![index].selected = true;
       } else {
-        _setItemSelected(widget._billItem.length - 1);
+        _setItemSelected(widget._billItem!.length - 1);
       }
     });
   }
 
   void _deleteOrder() {
     setState(() {
-      widget._billItem.clear();
+      widget._billItem!.clear();
     });
   }
 
@@ -646,13 +657,14 @@ class _BillScreenState extends State<BillScreen> {
               children: [
                 BillSection(
                   bottomBarHeight: widget._bottomBarHeight,
-                  billItem: widget._billItem,
+                  billItem: widget._billItem!,
                   deleteOrder: _deleteOrder,
                   setSelectedItem: _setSelectedItem,
                 ),
                 SideBar(
                   sideBarWidth: widget._sideBarWidth,
                   deleteItem: _deleteItem,
+                  goPaymentScreen: _goPaymentScreen,
                 ),
               ],
             ),

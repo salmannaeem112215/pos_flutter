@@ -8,9 +8,11 @@ class SideBar extends StatelessWidget {
     Key? key,
     required this.sideBarWidth,
     required this.deleteItem,
+    required this.goPaymentScreen,
   }) : super(key: key);
   final double sideBarWidth;
   final Function deleteItem;
+  final Function goPaymentScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +71,7 @@ class SideBar extends StatelessWidget {
                 LargeButton(
                   title: 'Cash',
                   width: sideBarWidth,
-                  buttonFunction: () {
-                    print('cash');
-                  },
+                  buttonFunction: () => goPaymentScreen(),
                   // disable: true,
                 ),
                 LargeButton(
