@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pos_flutter_arronium/bill/button.dart';
 import 'package:pos_flutter_arronium/bill/largeButton.dart';
+import 'package:pos_flutter_arronium/payment/payment_screen.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
@@ -69,9 +70,9 @@ class SideBar extends StatelessWidget {
                   title: 'Cash',
                   width: sideBarWidth,
                   buttonFunction: () {
-                    print('CAsh');
+                    print('cash');
                   },
-                  disable: true,
+                  // disable: true,
                 ),
                 LargeButton(
                   title: 'JazzCash/Easypaisa',

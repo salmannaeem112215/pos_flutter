@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PaymentActionRight extends StatelessWidget {
-  const PaymentActionRight({Key? key, required this.headingText})
-      : super(key: key);
+  const PaymentActionRight({
+    Key? key,
+    required this.headingText,
+    required this.totalAmount,
+  }) : super(key: key);
   final Widget headingText;
+  final double totalAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class PaymentActionRight extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '1500.00',
+                  totalAmount.toStringAsFixed(2),
                   style: TextStyle(
                       color: Theme.of(context).focusColor,
                       fontSize: 24,

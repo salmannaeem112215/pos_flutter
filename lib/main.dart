@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         focusColor: Color(0xff1BA1E2),
         // primaryColor: Colors.white,
       ),
-      home: PaymentScreen(),
+      home: BillScreen(),
       // home: BillScreen(),
     );
   }

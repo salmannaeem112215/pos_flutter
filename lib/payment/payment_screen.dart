@@ -48,6 +48,14 @@ class PaymentScreen extends StatelessWidget {
     ),
   ];
 
+  double getTotalAmount() {
+    double total = 0;
+    _billItem.forEach((element) {
+      total += element.price * element.qty;
+    });
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
     final _borderSide = BorderSide(
@@ -70,6 +78,7 @@ class PaymentScreen extends StatelessWidget {
             ),
             PaymentBillAction(
               itemHeadingBorder: _itemHeadingBorder,
+              totalAmount: getTotalAmount(),
             ),
           ],
         ),
