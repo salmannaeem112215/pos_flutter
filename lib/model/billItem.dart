@@ -8,6 +8,7 @@ class BillItem {
     required this.price,
     required this.qty,
     required this.index,
+    required this.selected,
   });
   final String barcode;
   final String name;

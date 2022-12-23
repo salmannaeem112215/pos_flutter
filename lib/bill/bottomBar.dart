@@ -1,29 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pos_flutter_arronium/bill/bottomBarTotalAmount.dart';
 import 'package:pos_flutter_arronium/bill/button.dart';
-import '../model/billItem.dart';
+import 'package:pos_flutter_arronium/provider/billItems.dart';
+import 'package:provider/provider.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({
     Key? key,
     required this.bottomBarHeight,
-    required this.billItem,
-    required this.deleteOrder,
   }) : super(key: key);
   final double bottomBarHeight;
-  final List<BillItem> billItem;
-  final Function deleteOrder;
-
-  double getTotalAmount() {
-    double totalAmount = 0;
-    billItem.forEach((element) {
-      totalAmount += element.price * element.qty;
-    });
-    return totalAmount;
-  }
 
   @override
   Widget build(BuildContext context) {
+    final billItemsData = Provider.of<BillItems>(context);
     return Container(
       decoration: BoxDecoration(
           color: Theme.of(context).backgroundColor,
@@ -48,12 +38,13 @@ class BottomBar extends StatelessWidget {
               Button(
                 title: "Del Order",
                 icon: Icon(Icons.delete, size: 45),
-                buttonFunction: deleteOrder,
+                buttonFunction: billItemsData.deleteAllItems,
               ),
             ],
           ),
         ),
-        BottomBarTotalAmount(totalAmount: getTotalAmount().toString()),
+        BottomBarTotalAmount(
+            totalAmount: billItemsData.getTotalAmount().toString()),
       ]),
     );
   }

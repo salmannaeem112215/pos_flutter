@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/billItems.dart';
+import '../model/billItem.dart';
 import './billItemAddedHeading.dart';
 import './billItemAddedItem.dart';
-import '../model/billItem.dart';
 
 class BillItemsAdded extends StatelessWidget {
-  const BillItemsAdded(
-      {Key? key, required this.billItem, required this.setSelectedItem})
-      : super(key: key);
-  final List<BillItem> billItem;
-  final Function setSelectedItem;
+  const BillItemsAdded({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int num = 1;
+    final billItemsData = Provider.of<BillItems>(context, listen: true);
+    final List<BillItem> billItems = billItemsData.billItems;
+    int num = 0;
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -27,14 +28,13 @@ class BillItemsAdded extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               BillItemAddedHeading(),
-              ...billItem
+              ...billItems
                   .map((e) => BillItemAddedItem(
                         num: num++,
                         name: e.name,
                         qty: e.qty,
                         price: e.price,
                         selected: e.selected,
-                        setSelectedItem: setSelectedItem,
                       ))
                   .toList(),
             ],

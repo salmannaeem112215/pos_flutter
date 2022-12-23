@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import '../model/item.dart';
+import 'package:pos_flutter_arronium/provider/billItems.dart';
+import 'package:pos_flutter_arronium/provider/items.dart';
+import 'package:provider/provider.dart';
 import 'package:searchfield/searchfield.dart';
 
 class TopBarBill extends StatefulWidget {
   TopBarBill({
     Key? key,
     required this.topBarHeight,
-    required this.itemList,
-    required this.addItemInList,
   }) : super(key: key);
 
   final double topBarHeight;
-  final List<Item> itemList;
   bool _isByName = true;
-  Function addItemInList;
 
   @override
   State<TopBarBill> createState() => _TopBarBillState();
@@ -30,6 +28,10 @@ class _TopBarBillState extends State<TopBarBill> {
 
   @override
   Widget build(BuildContext context) {
+    final itemsData = Provider.of<Items>(context);
+    final billItemsData = Provider.of<BillItems>(context);
+    final items = itemsData.items;
+
     return Container(
       width: double.infinity,
       height: widget.topBarHeight,
@@ -45,7 +47,7 @@ class _TopBarBillState extends State<TopBarBill> {
               ),
               suggestionState: Suggestion.hidden,
               suggestionAction: SuggestionAction.unfocus,
-              suggestions: widget.itemList
+              suggestions: items
                   .map((e) => SearchFieldListItem(
                         widget._isByName ? e.name : e.barcode,
                         child: Container(
@@ -77,8 +79,8 @@ class _TopBarBillState extends State<TopBarBill> {
               maxSuggestionsInViewPort: 10,
               itemHeight: 30,
               onSuggestionTap: (x) {
-                print(x.searchKey);
-                widget.addItemInList(x.searchKey, widget._isByName);
+                billItemsData.addBillItem(x.searchKey, true);
+                print('hi');
                 _searchController.clear();
               },
               marginColor: Color.fromARGB(255, 243, 237, 237),

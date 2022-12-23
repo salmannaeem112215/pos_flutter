@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:pos_flutter_arronium/bill/button.dart';
 import 'package:pos_flutter_arronium/bill/largeButton.dart';
 import 'package:pos_flutter_arronium/payment/payment_screen.dart';
+import 'package:pos_flutter_arronium/provider/billItems.dart';
+import 'package:provider/provider.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
     Key? key,
     required this.sideBarWidth,
-    required this.deleteItem,
-    required this.goPaymentScreen,
   }) : super(key: key);
   final double sideBarWidth;
-  final Function deleteItem;
-  final Function goPaymentScreen;
 
   @override
   Widget build(BuildContext context) {
+    final billItemsData = Provider.of<BillItems>(context);
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).backgroundColor,
@@ -38,7 +37,7 @@ class SideBar extends StatelessWidget {
                     Button(
                       title: "Del Item",
                       icon: Icon(Icons.delete, size: 30),
-                      buttonFunction: deleteItem,
+                      buttonFunction: billItemsData.deleteBillItem,
                     ),
                     Button(
                       title: "Quantity",
@@ -71,7 +70,10 @@ class SideBar extends StatelessWidget {
                 LargeButton(
                   title: 'Cash',
                   width: sideBarWidth,
-                  buttonFunction: () => goPaymentScreen(),
+                  buttonFunction: () {
+                    Navigator.pushNamed(context, PaymentScreen.nameRoute);
+                  },
+                  // buttonFunction: () => print("Bill SCreen"),
                   // disable: true,
                 ),
                 LargeButton(

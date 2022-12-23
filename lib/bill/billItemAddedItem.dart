@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/billItems.dart';
 
 class BillItemAddedItem extends StatelessWidget {
   const BillItemAddedItem({
@@ -8,14 +10,12 @@ class BillItemAddedItem extends StatelessWidget {
     required this.price,
     required this.qty,
     required this.selected,
-    required this.setSelectedItem,
   }) : super(key: key);
   final int num;
   final String name;
   final double qty;
   final double price;
   final bool selected;
-  final Function setSelectedItem;
 
   double getAmount() {
     return qty * price;
@@ -23,15 +23,14 @@ class BillItemAddedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final billItemsData = Provider.of<BillItems>(context);
     final TextStyle headingStyle = TextStyle(
       color: Colors.white,
       fontSize: 14,
     );
     return GestureDetector(
       onTap: () {
-        print('Gesture Dectecture');
-        print(num);
-        setSelectedItem(num);
+        billItemsData.setSelectedItem = num;
       },
       child: Container(
         padding: EdgeInsets.all(8.0),
@@ -41,13 +40,15 @@ class BillItemAddedItem extends StatelessWidget {
               color: Colors.white30,
             ),
           ),
-          color: (selected) ? Color(0xAD1BA0E2) : Color(0x001BA0E2),
+          color: (num == billItemsData.selectedItem)
+              ? Color(0xAD1BA0E2)
+              : Color(0x001BA0E2),
         ),
         child: Row(
           children: [
             Expanded(
                 child: Text(
-              "#" + num.toString() + "  " + name,
+              "#" + (num + 1).toString() + "  " + name,
               style: headingStyle,
             )),
             Container(

@@ -7,15 +7,8 @@ class BillSection extends StatefulWidget {
   const BillSection({
     Key? key,
     required this.bottomBarHeight,
-    required this.billItem,
-    required this.deleteOrder,
-    required this.setSelectedItem,
   }) : super(key: key);
   final double bottomBarHeight;
-  final List<BillItem> billItem;
-
-  final Function deleteOrder;
-  final Function setSelectedItem;
 
   @override
   State<BillSection> createState() => _BillSectionState();
@@ -28,14 +21,9 @@ class _BillSectionState extends State<BillSection> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          BillItemsAdded(
-            billItem: widget.billItem,
-            setSelectedItem: widget.setSelectedItem,
-          ),
+          BillItemsAdded(),
           BottomBar(
             bottomBarHeight: widget.bottomBarHeight,
-            billItem: widget.billItem,
-            deleteOrder: widget.deleteOrder,
           ),
         ],
       ),
