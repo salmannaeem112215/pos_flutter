@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pos_flutter_arronium/provider/items.dart';
 import '../model/item.dart';
 import '../model/billItem.dart';
-import 'package:provider/provider.dart';
 
 class BillItems with ChangeNotifier {
   final List<BillItem> _billItems = [];
@@ -64,7 +63,6 @@ class BillItems with ChangeNotifier {
   }
 
   void deleteBillItem() {
-    print('Delete Bill Item');
     if (_selectedItem != -1) {
       billItems.removeAt(_selectedItem);
       if (_selectedItem == billItems.length) _selectedItem--;
@@ -80,5 +78,6 @@ class BillItems with ChangeNotifier {
   void billCompleted() {
     _billItems.clear();
     _selectedItem = -1;
+    notifyListeners();
   }
 }

@@ -12,25 +12,9 @@ class PaymentScreen extends StatelessWidget {
   PaymentScreen({
     Key? key,
   }) : super(key: key);
-  List<BillItem>? _billItem = [];
-  Function _newBill = () {
-    print('New Bill');
-  };
-
-  double getTotalAmount() {
-    double total = 0;
-    _billItem!.forEach((element) {
-      total += element.price * element.qty;
-    });
-    return total;
-  }
 
   @override
   Widget build(BuildContext context) {
-    var routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, Object?>;
-    _billItem = routeArgs['billItem'] as List<BillItem>;
-    _newBill = routeArgs['newBill'] as Function;
     final _borderSide = BorderSide(
       color: Colors.white30,
     );
@@ -44,15 +28,12 @@ class PaymentScreen extends StatelessWidget {
         child: Row(
           children: [
             PaymentItemDetails(
-              billItem: _billItem!,
               itemHeadingBorder: _itemHeadingBorder,
               itemsBodyBorder: _itemsBodyBorder,
               itemBorder: _itemBorder,
             ),
             PaymentBillAction(
               itemHeadingBorder: _itemHeadingBorder,
-              totalAmount: getTotalAmount(),
-              newBill: _newBill,
             ),
           ],
         ),

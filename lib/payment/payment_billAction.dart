@@ -6,12 +6,8 @@ class PaymentBillAction extends StatelessWidget {
   const PaymentBillAction({
     Key? key,
     required this.itemHeadingBorder,
-    required this.totalAmount,
-    required this.newBill,
   }) : super(key: key);
   final Border itemHeadingBorder;
-  final double totalAmount;
-  final Function newBill;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +21,7 @@ class PaymentBillAction extends StatelessWidget {
               border: itemHeadingBorder,
               color: Theme.of(context).primaryColorDark,
             ),
-            PaymentActionButtons(
-              totalAmount: totalAmount,
-              newBill: newBill,
-            ),
+            PaymentActionButtons(),
           ],
         ),
       ),

@@ -13,7 +13,7 @@ class PaymentBillItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(8, 4, 8, 3),
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 3),
       decoration: BoxDecoration(border: border),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -21,34 +21,46 @@ class PaymentBillItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                billItem.name,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                billItem.qty.toStringAsFixed(0) +
-                    ' x ' +
-                    billItem.price.toStringAsFixed(2),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                ),
-              ),
+              Name(),
+              QtyPrice(),
             ],
           ),
-          Text(
-            (billItem.qty * billItem.price).toStringAsFixed(2),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          TotalPrice(),
         ],
+      ),
+    );
+  }
+
+  Widget Name() {
+    return Text(
+      billItem.name,
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget QtyPrice() {
+    return Text(
+      billItem.qty.toStringAsFixed(0) +
+          ' x ' +
+          billItem.price.toStringAsFixed(2),
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 13,
+      ),
+    );
+  }
+
+  Widget TotalPrice() {
+    return Text(
+      (billItem.qty * billItem.price).toStringAsFixed(2),
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
